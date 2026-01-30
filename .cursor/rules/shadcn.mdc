@@ -1,0 +1,69 @@
+---
+description: Guidelines for installing, styling, composing, and extending shadcn/ui components while preserving accessibility, theming, and official conventions. Before deciding whatever need to create new ui component and use shadcn in general
+alwaysApply: false
+---
+# shadcn/ui Instructions
+
+## Install / Update Components
+
+- Use the latest shadcn CLI.
+- Always install components via CLI (do not hand-copy from docs unless required).
+- Command example (preferred):
+
+```bash
+pnpm dlx shadcn@latest add button
+```
+
+- When adding multiple components, add them explicitly:
+
+```bash
+pnpm dlx shadcn@latest add dialog dropdown-menu tooltip
+```
+
+- If a component requires another (e.g. Dialog + Button), install both and keep the generated structure.
+
+## Project Conventions
+
+- Keep shadcn-generated components in `src/components/ui/*` (or the configured ui directory).
+- Do not rename files, exports, or internal structure without a clear reason.
+- Do not add wrappers around shadcn components unless they introduce real behavior or enforce business rules.
+- Do not restate common style guides — rely on linting and existing patterns in the codebase.
+
+## Styling Rules
+
+- Use Tailwind classes only (no inline styles).
+- Extend styles via:
+
+  - `className`
+  - `variant` / `size`
+  - new `cva` variants when truly needed
+- Do not hardcode design colors if tokens exist.
+
+  - Prefer theme tokens (`bg-background`, `text-foreground`, etc.).
+- Use `cn()` for class composition only (import from the project’s utils path).
+
+## Variants (cva)
+
+- Use `class-variance-authority` for variants and sizes.
+- Keep variants simple and predictable (`variant`, `size`).
+- Add variants only when reused in multiple places.
+- Always keep typings in sync when variants change.
+
+## Composition Rules
+
+- Follow standard shadcn/Radix composition patterns.
+- Do not flatten or merge primitives unless behavior and types are fully preserved.
+
+## Avoid
+
+- Duplicating shadcn components under new names.
+- Creating generic “Base*” components without enforcing constraints.
+- Removing `cn`, `cva`, or Radix primitives to “simplify”.
+- Documenting obvious tools or rare edge cases.
+- Copying code that already exists — reference canonical examples instead.
+
+## Output Expectations
+
+- Prefer existing ui components.
+- Add new components only when necessary.
+- Keep changes minimal, consistent, and aligned with shadcn conventions.
