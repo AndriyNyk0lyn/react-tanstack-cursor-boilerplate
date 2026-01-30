@@ -1,0 +1,12 @@
+---
+description: Detect hardcoded credentials like API keys, tokens, and secrets
+globs:
+  - "**/*.ts"
+  - "**/*.js"
+  - "**/*.env"
+alwaysApply: false
+---
+
+- Never commit hardcoded API keys, secrets, or tokens in your code
+- Use environment variables or a secrets manager like AWS Secrets Manager or Vault
+- Common patterns include `AKIA...`, `sk_live_...`, `ghp_...`, and JWT-like tokens
